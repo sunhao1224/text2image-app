@@ -1,0 +1,31 @@
+services:
+  # Backend: FastAPI proxy service
+  - type: web
+    name: modelscope-api-proxy
+    runtime: python
+    plan: free
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn main:app --host 0.0.0.0 --port $PORT
+    envVars:
+      - key: MODELSCOPE_API_KEY
+        sync: false
+      - key: MODELSCOPE_BASE_URL
+        value: https://api-inference.modelscope.cn
+      - key: IMAGE_MODEL
+        value: Qwen/Qwen-Image-2512
+      - key: CHAT_MODEL
+        value: Qwen/Qwen2.5-72B-Instruct
+
+  # Frontend: Vue 3 static site
+  - type: static
+    name: text2image-frontend
+    plan: free
+    rootDir: patent-drawing-app
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    publishDir: dist
+    envVars:
+      - key: VITE_API_BASE_URL
+        # After deploying the backend, replace this with your backend service URL
+        # e.g. https://modelscope-api-proxy-xxx.onrender.com/api
+        sync: false

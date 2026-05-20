@@ -1,0 +1,22 @@
+# Dependencies
+patent-drawing-app/node_modules/
+backend/venv/
+backend/__pycache__/
+
+# Build outputs
+patent-drawing-app/dist/
+
+# Environment files
+backend/.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+npm-debug.log*

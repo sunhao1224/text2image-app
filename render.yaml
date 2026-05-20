@@ -1,6 +1,6 @@
 services:
   # Backend: FastAPI proxy service
-  - type: web
+  - type: web_service
     name: modelscope-api-proxy
     runtime: python
     plan: free
@@ -18,7 +18,7 @@ services:
         value: Qwen/Qwen2.5-72B-Instruct
 
   # Frontend: Vue 3 static site
-  - type: static
+  - type: static_site
     name: text2image-frontend
     plan: free
     rootDir: patent-drawing-app
